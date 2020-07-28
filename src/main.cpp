@@ -98,4 +98,127 @@ class Admin
         }
 
         //This function help both the students & faculties to recover the password with the help of unique keyword provided by the Admin.
+
+        int recover()
+        {
+            //cout<<"\nThe Input Username is : "<<::un;
+            char key[20];
+            if(strcmp(::un,rollno)==0)
+            {
+                cout<<"\nEnter the Unique keyword (Provided by Admin) : ";
+                cin>>key;
+
+                if((strcmp(key,rpasswd)==0))
+                {
+                    cout<<"\nYou are a Valid user.";
+                    cout<<"\nYour Password is "<<passwd;
+                    cout<<"\nPlease Exit to Login Again ";
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //This function displays the faculty profile to the faculty at their respective portals
+
+        int faprofile()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nFaculty Name          : "<<name;
+                cout<<"\nFaculty Father's Name : "<<fname;
+                cout<<"\nFaculty Mobile No     : "<<mobile;
+                cout<<"\nFaculty E-Mail ID     : "<<mail;
+                return 1;
+            }
+            else
+            {
+                return 0;   
+            }
+        }
+
+        //This function displays the different subjects of the faculty at their respective portals
+
+        int knowfasub()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nFaculty Total Subjects : "<<totsub;
+                for(int i=0; i<totsub; i++)
+                {
+                    cout<<"\n\tSubject "<<i+1<<" : "<<subject[i];
+                }
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //This function helps a faculty to add a subject in their module
+
+        void addfasub()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nEnter the New Subject : ";
+                cin>>subject[totsub];
+                totsub++;
+                cout<<"\n\nNew Subject Added Successfully...";
+            }
+        }
+
+        //This function helps a faculty to delete a subject from their module.
+
+        void delfasub()
+        {
+            knowfasub();
+            int de=0;
+
+            if((strcmp(::un,rollno)==0))
+            {
+                if(totsub==0||totsub<0)
+                {
+                    totsub=0;
+                    cout<<"\nNone Subjects Exist...";
+                    getch();
+                    exit(0);
+                }
+                cout<<"\nEnter the Subject No. to be Deleted : "
+                cin>>de;
+
+                if(de==totsub)
+                {
+                    totsub--;
+                    strcpy(subject[totsub]," ");
+                }
+                else if(totsub==1)
+                {
+                    totsub=0;
+                    strcpy(subject[totsub]," ");
+                }
+                else
+                {
+                    de--;
+                    strcpy(subject[totsub]," ");
+                    
+                    for(int p=de; p<totsub; p++)
+                    {
+                        strcpy(subject[p],subject[p+1]);
+                    }
+                    totsub--;
+                }
+                cout<<"\n Records Updated Successfully...";
+            }
+        }
+
+        //This function helps a faculty to modify his personal profile.
 };
