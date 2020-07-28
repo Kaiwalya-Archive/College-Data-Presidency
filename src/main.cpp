@@ -1,6 +1,8 @@
 //.......................Collage Management system.....................
 /*
 This project is going to be fun because I am going to add many real life functions to make it more effective ! Let's Start.
+
+for more view https://kaiwalyakoparkar.github.io
 */
 
 //.............Including the files..............
