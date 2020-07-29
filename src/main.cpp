@@ -223,4 +223,138 @@ class Admin
         }
 
         //This function helps a faculty to modify his personal profile.
+
+        void modfaprofile()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nThe Profile Details are : ";
+                cout<<"\n 1. Faculty E-Mail : "<<mail;
+                cout<<"\n 2. Faculty Mobile : "<<mobile;
+
+                int g=-1;
+                cout<<"\n\nEnter the Detail No. to be Modified : ";
+                cin>>g;
+
+                if(g==1)
+                {
+                    char nmail[50];
+                    cout<<"\nEnter the New Mail Address : ";
+                    strcpy(mail, nmail);
+                    cout<<"\nRecords Updated Successfully...";
+                }
+                else if(g==2)
+                {
+                    char mobile[15];
+                    cout<<"\nEnter the new Mobile No : ";
+                    gets(nmobile);
+                    strcpy(mobile,nmobile);
+                    cout<<"\nRecords Updated Successfully...";
+                }
+                else
+                {
+                    cout<<"\nInvalid Input Provided...";
+                }
+            }
+        }
+
+        //This function displays the student profile at the student portal 
+
+        int stdprofile()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nStudent Name          : "<<name;
+                cout<<"\nStudent Father's Name : "<<fname;
+                cout<<"\nStudent Mobile No.    : "<<mobile;
+                cout<<"\nStudent E-mail Id     : "<<mail;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //This function displays the different enrolled subjects of the respective students...according to their profile.
+
+        int knowstsub()
+        {
+            if((strcmp(::un,rollno)==0))
+            {
+                cout<<"\nStudent Total Subjects   : "<<totsub;
+                
+                for(int i=0; i<totsub; i++)
+                {
+                    cout<<"\n\tSubject "<<i+1<<" : "<<subject[i];
+                }
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        //This function allows the student to add a subject in total subjects of the student profile...
+
+        void addstsub()
+        {
+            if((strcmp(::un, rollno)==0))
+            {
+                cout<<"\nEnter the new subject   : ";
+                cin>>subject[totsub];
+                totsub++;
+                cout<<"\n\nNew Subject Added Successfully...";
+            }
+        }
+
+        //This function allows the student to delete a subjects in total subjects of the student profile...
+
+        void delstsub()
+        {
+            knowstsub();
+            int de=0;
+
+            if((strcmp(::un,rollno)==0))
+            {
+                if(totsub==0||totsub<0)
+                {
+                    totsub=0;
+                    cout<<"\nNone Subjects Exists...";
+                    getch();
+                    exit(0);
+                }
+
+                cout<<"\nEnter the Subject No. to be Deleted : ";
+                cin>>de;
+
+                if(de==totsub)
+                {
+                    totsub--;
+                    strcpy(subject[totsub]," ");
+                }
+                else if(totsub==1)
+                {
+                    totsub=0;
+                    strcpy(subject[totsub]," ");
+                }
+                else
+                {
+                    de--;
+                    strcpy(subject[totsub]," ");
+                    
+                    for(int p=de; p<totsub; p++)
+                    {
+                        strcpy(subject[p],subject[p+1]);
+                    }
+                    totsub--;
+                }
+
+                cout<<"\nRecords Updated Successfully...";
+            }
+        }
+
+        //This function allows the student to modify their personal profile details at the student portal
+
+        
 };
