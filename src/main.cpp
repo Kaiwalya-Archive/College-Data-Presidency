@@ -1,8 +1,16 @@
 //.......................Collage Management system.....................
 /*
-This project is going to be fun because I am going to add many real life functions to make it more effective ! Let's Start.
+This project is going to be fun because I am going to add many real life functions to make it more effective like 
+1. Password Hiding
+2. Password Recovery
 
-for more view https://kaiwalyakoparkar.github.io
+! Let's Start.
+
+for more view https://kaiwalyakoparkar.github.io/
+
+This is Intended to be the microproject for the third semester.
+Developers : 
+1. Kaiwalya Koparkar (2nd Year)
 */
 
 //.............Including the files..............
@@ -356,5 +364,121 @@ class Admin
 
         //This function allows the student to modify their personal profile details at the student portal
 
+        void modstprofile()
+        {
+            if ((strcmp(::un, rollno)==0))
+            {
+                cout<<"\nThe Profile Details are : ";
+                cout<<"\n 1. Student E-Mail : "<<mail;
+                cout<<"\n 2. Student Mobile : "<<mobile;
+
+                int g=-9;
+                cout<<"\n\nEnter the Detail No. to be Modified : ";
+                cin>>g;
+
+                if(g==1)
+                {
+                    char nmail[50];
+                    cout<<"\nEnter the New Mail Address : ";
+                    strcpy(mail,nmail);
+                    cout<<"\nRecords Updated Successfully...";
+                }
+                else if(g==2)
+                {
+                    char nmobile[15];
+                    cout<<"\nEnter thr New Mobile No : ";
+                    gets(nmobile);
+                    strcpy(mobile,nmobile);
+                    cout<<"\nRecords Updated Successfully...";
+                }
+                else
+                {
+                    cout<<"\nInvalid Input Provided..."
+                }
+            }
+        }
+
+        //This function allows the ADMIN to make a new Record Entry for the different new faculties...new faculty records are updated with the help of this function.
+
+        void getfdata()
+        {
+            cout<<"\nEnter the Faculty Name : ";
+            gets(name);
+            cout<<"\nEnter the Faculty ID/Roll No : ";
+            cin>>rollno;
+            cout<<"\nEnter the Faculty Father's Name : ";
+            gets(fname);
+            cout<<"\nEnter the Mobile No : ";
+            gets(mobile);
+            cout<<"\nEnter the E-Mail ID : ";
+            gets(mail);
+            cout<<"\nEnter the Total Subjects : ";
+            cin>>totsub;
+
+            //cout<<"\nThe total subjects choosen are : "<<totsub;
+
+            for(int i=0;l i<totsub; i++)
+            {
+                cout<<"\nEnter the Subject "<<i+1<<" Name : ";
+                cin>>subject[i];
+            }
+            
+            cout<<"\nCreate Your Login Password : ";
+            cin>>passwd;
+            cout<<"\nEnter the Unique Keyword to Recover the Password : ";
+            cin>>rpasswd;
+            cout<<"\n\nPlease note your Username is ID/Roll no. \n";
+        } 
         
-};
+        //This function displaus all the relevant information to the admin related to the Student at the ADMIN portals
+
+        void stdisplay()
+        {
+            cout<<"\nStudent Name          : "<<name;
+            cout<<"\nStudent ID/Roll no    : "<<rollno;
+            cout<<"\nStudent Father's Name : "<<fname;
+            cout<<"\nStudent Mobile No     : "<<mobile;
+            cout<<"\nStudent E-Mail ID     : "<<mail;
+            cout<<"\nStudent Subjects      : "<<totsub;
+
+            for(int i=0; i<tosub;i++)
+            {
+                cout<<"\n     Subjects "<<i+1<<" : "<<subject[i];
+            }
+
+            if(totsub==0)
+            {
+                cout<<"None Subjects are Specified...";
+            }
+        }
+
+        //This function displaus all the relevant information to the admin related to the Faculty at the ADMIN portals
+
+        void fadisplay()
+        {
+            cout<<"\nFaculty Name          : "<<name;
+            cout<<"\nFaculty ID/Roll no    : "<<rollno;
+            cout<<"\nFaculty Father's Name : "<<fname;
+            cout<<"\nFaculty Mobile No     : "<<mobile;
+            cout<<"\nFaculty E-Mail ID     : "<<mail;
+            cout<<"\nFaculty Subjects      : "<<totsub;
+
+            for(int i=0; i<tosub;i++)
+            {
+                cout<<"\n     Subjects "<<i+1<<" : "<<subject[i];
+            }
+
+            if(totsub==0)
+            {
+                cout<<"None Subjects are Specified...";
+            }
+        }
+}a;
+
+Admin f;
+    // a & f are the objects of the class Admin
+
+void main()
+{
+
+}
