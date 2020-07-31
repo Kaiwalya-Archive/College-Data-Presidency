@@ -480,5 +480,119 @@ Admin f;
 
 void main()
 {
+    int ch;
+    clrscr();
+    cout<<"\n\n\n\t\t\tWelcome to M. S. Gosavi Polytechnic Database Portal ";
+    cout<<"\n\n\n\t\t\tEnter to Continue ";
+    getch();
+    clrscr();
 
+    cout<<"\n\n\n\t\t\tPress 1 for Admin Portal ";
+    cout<<"\n\t\t\tPress 2 for Faculty Portal ";
+    cout<<"\n\t\t\tPress 3 for Student Portal ";
+    cout<<"\n\n\t\t\tEnter Your Choice : ";
+    cin>>ch;
+    clrscr();
+
+    if(ch==1)
+    {
+        char adminuser[20], adminpass[20];
+        cout<<"\n\t\t\tWelcome to the Admin Login Portal ";
+        cout<<"\n\nEnter the UserName : ";
+        cin>>adminuser;
+        cout<<"\nEnter the Password : ";
+        for(int k=0;k<8;k++)
+        {
+            adminpass[k] = getch();
+            cout<<"*";
+        }
+
+        getch();
+        adminpass[k]=NULL;
+
+        //Starting the Admin Portal
+        if((strcmp(adminuser, "admin")==0)&&(strcmp(adminpass, "password")==0))
+        {
+            clrscr();
+        }
+        else
+        {
+            cout<<"\n\n\t\t\t  Invalid Access to Portal ";
+            cout<<"\n\n\t\t\t\tThank You !!! ";
+            getch();
+            exit(0);
+        }
+
+        char opera='y';
+
+        do
+        {
+            int tmp;
+            cout<<"\n\t\t\t\tWelcome To Admin Panel ";
+            cout<<"\n\nPress 1 to Add a Faculty Record ";
+            cout<<"\nPress 2 to Add Multiple Records of Faculies ";
+            cout<<"\nPress 3 to View all Records of Faculties ";
+            cout<<"\nPress 4 to Delete the Faculty Records ";
+            cout<<"\nPress 5 to Add Student Record ";
+            cout<<"\nPress 6 to Add Multiple Records of Students ";
+            cout<<"\nPress 7 to View all Records of Students ";
+            cout<<"\nPress 8 to Delete the Students Record ";
+            cout<<"\nPress 9 to Exit ";
+            cout<<"\n\n\tEnter your choice ";
+
+            cin>>temp;
+            clrscr();
+
+            //For incerting record of a single faculty
+            if(tmp==1)
+            {
+                cout<<"\nEnter the Details : ";
+                fstream fs;
+                fs.open("fainfo.txt",ios::in|ios::out|ios::ate);
+                a.getfadata();
+                fs.write((char *)&a, sizeof(Admin));
+                fs.close();
+                cout<<"\nRecord Entered Successfully...";
+            }
+
+            //For inserting multiple faculty records.
+            if(tmp==2)
+            {
+                int m=0;
+                fstream fs;
+                fs.open("fainfo.txt",ios::in|ios::out|ios::ate);
+                do
+                {
+                    cout<<"\nEnter the Details : ";
+                    a.getfadata();
+
+                    fs.write((char *)&a,sizeof(Admin));
+                    cout<<"Press 0 if you want to Enter More Records : ";
+                    cin>>m;
+                }while(m==0);
+                fs.close();
+                cout<<"\nRecords Entered Suuccessfully...";
+            }
+
+            //For viewing all faculty records
+            if(tmp==3)
+            {
+                fstream fs;
+                fs.open("fainfo.txt",ios::in);
+                fs.seekg(0);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&a,sizeof(Admin));
+                    a.fadisplay();
+                }
+                fs.close();
+            }
+
+            //For Deleting a Faculty Record
+            for(tmp==4)
+            {
+
+            }
+        }
+    }
 }
