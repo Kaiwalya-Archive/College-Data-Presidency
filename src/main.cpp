@@ -591,8 +591,154 @@ void main()
             //For Deleting a Faculty Record
             for(tmp==4)
             {
+                char tmpfaid[15]
+                int de=0, result = -1;
+                cout<<"\nEnter the Faculty ID/Roll No : ";
+                cin>>tmpfaid;
+                fstream fs;
+                fs.open("fainfo.txt",ios::in);
+                fstream fs1;
+                fs1.open("fanewinfo.txt",ios::out|ios::ate);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&a, sizeof(Admin));
+                    result = strcmp(tmpfaid, a.rollno);
+                    if(result==0)
+                    {
+                        de=1;
+                    }
+                    else
+                    {
+                        fs1.write((char *)&a, sizeof(Admin));
+                    }
 
+                    if(d==1)
+                    {
+                        cout<<"\nRecords Deleted Successfully...";
+                    }
+                    else
+                    {
+                        cout<<"\nRecord Not Found...";
+                    }
+
+                    fs.close();
+                    fs1.close();
+                    remove("fainfo.txt");
+                    rename("fanewinfo.txt","fainfo.txt");
+                }
             }
-        }
-    }
+
+            //For single student record input
+            if(tmp==5)
+            {
+                cout<<"\nEnter the Details : ";
+                fstream fs;
+                fs.open("stinfo.txt",ios::in|ios::out|ios::ate);
+                a.getsdata();
+                fs.write((char *)&a, sizeof(Admin));
+                fs.close();
+                cout<<"\nRecord Entered Successfully...";
+            }
+            
+            //For Multiple Student record
+            if(tmp==6)
+            {
+                int m=0;
+                fstream fs;
+                fs.open("stinfo.txt",ios::in|ios::out|ios::ate);
+
+                do
+                {
+                    cout<<"\nEnter the Details : ";
+                    a.getsdata();
+                    fs.write((char *)&a, sizeof(Admin));
+                    cout<<"Press 0 if you want to Enter More Records : ";
+                    cin>>m;
+                }while(m==0);
+                fs.close();
+                cout<<"\nRecord Entered Successfully...";
+            }
+
+            //For viewing all students records
+            if(tmp==7)
+            {
+                fstream fs;
+                fs.open("stinfo.txt",ios::in);
+                fs.seekg(0);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&a, sizeof(Admin));
+                    a.stdisplay();
+                }
+                fs.close();
+            }
+
+            //For Deleting the student records
+            if(tmp==8)
+            {
+                char tmpstid[15];
+                int de=0, result = -1;
+                cout<<"\nEnter the Student ID/ Rollno : ";
+                cin>>tmpstid;
+                fstream fs;
+                fs.open("stinfo.txt",ios::in);
+                fstream fs1;
+                fs1.open("stnewinfo.txt",ios::out|ios::ate);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&a, sizeof(Admin));
+                    result = strcmp(tmpstid, a.rollno);
+                    if(result==0)
+                    {
+                        de=1;
+                    }
+                    else
+                    {
+                        fs1.write((char *)&a, sizeof(Admin));
+                    }
+                }
+                if(de==1)
+                {
+                    cout<<"\nRecords Deleted Successfully...";
+                }
+                else
+                {
+                    cout<<"\nRecord Not found...";
+                }
+                fs.close();
+                fs1.close();
+                remove("stinfo.txt");
+                rename("stnewinfo.txt","stinfo.txt");
+            }
+
+            //For exting the command
+            if(tmp==9)
+            {
+                cout<<"\n\n\n\n\t\t\t\tThank You !!!";
+                getch();
+                exit(0);
+            }
+
+            //For Invalid Input amongst the choices
+            if(tmp<1||tmp<9)
+            {
+                clrscr();
+                cout<<"\n\n\n\t\t\t\tInvalid Input...";
+            }
+            getch();
+            cout<<"\n\nPress y ; For More Operation otherwise Press n : ";
+            cin>>opera;
+
+            if(opera!='y')
+            {
+                getch();
+                clrscr();
+                cout<<"\n\n\n\n\n\t\t\t\t\tThank You !!!";
+                getch();
+            }
+            
+        }while(opera=='Y'||opera=='y');
+    }//Admin Portal Close Here
+
+    //Starting Faculty View Portal
 }
