@@ -741,4 +741,165 @@ void main()
     }//Admin Portal Close Here
 
     //Starting Faculty View Portal
+    if(ch==2)
+    {
+        clrscr();
+        char un[20];
+        int val, s=0;
+        cout<<"\n\t\t\tWelcome to Faculty Login Page";
+        cout<<"\n\nEnter the UserName : ";
+        cin>>::un;
+        fstream fs;
+        fs.open("fainfo.txt",ios::in|ios::binary);
+        fs.seekg(0);
+        while(!fs.eof())
+        {
+            val=-1;
+            fs.read((char *)&f,sizeofd(Admin));
+            val=f.login();
+            if(val==1)
+            {
+                s=1;
+                break;
+            }
+        }
+        fs.close();
+        if(s==1)
+        {
+            clrscr();
+        }//If first login is invalid then
+        
+        if(s!=1)//if first login is invalid then
+        {
+            clrscr();
+            int ho=0;
+            cout<<"\n\n\t\tYour Login Credentials are Invalid";
+            cout<<"\nThe Username is your ID/Roll no";
+            cout<<"\nThe Password is Case Sensitive ";
+            cout<<"\nPress 1 to Re-Cover Password & 2 to Re-Attempt Login ";
+            cout<<"\nEnter the Choise : ";
+            cin>>ho;
+            if(ho==1)
+            {
+                cout<<"\nEnter the UserName : ";
+                cin>>::un;
+                fstream fs;
+                fs.open("fainfo.txt",ios::in|ios::binary);
+                fs.seekg(0);
+                int re, su=-1;
+                while(!fs.eof())
+                {
+                    re=-1;
+                    fs.read((char *)&f,sizeof(Admin));
+                    re=f.recover();
+                    if(re==1)
+                    {
+                        su=1;
+                        break;
+                    }
+                }
+                fs.close();
+                if(su==1)
+                {
+                    getch();
+                    clrscr();
+                    cout<<"\n\n\n\n\t\t\tThank You !!!";
+                    getch();
+                    exit(0);
+                }
+                else
+                {
+                    cout<<"\nYou are a Invalid User";
+                    getch();
+                    exit(0);
+                }
+            }
+
+            if(ho==2)//Re-attempt the Login
+            {
+                cout<<"\n\nEnter the UserName : ";
+                cin>>::un;
+                fstream fs;
+                fs.open("fainfo.txt",ios::in|ios::binary);
+                fs.seekg(0);
+                int suc=-1,valu;//valu for sorting login returned value
+                suc for success login
+                while(!fs.eof())
+                {
+                    valu=-1;
+                    fs.read((char *)&f, sizeof(Admin));
+                    valu=f.login();
+                    if(valu==1)
+                    {
+                        suc=1;
+                        break;
+                    }
+                }
+                fs.close();
+                if(suc==1)
+                {
+                    clrscr();
+                }
+                else
+                {
+                    getch();
+                    cout<<"\nYou are an Invalid User...";
+                    cout<<"\nThank You !!!";
+                    getch();
+                    exit(0);
+                    exit(0);
+                }
+            }
+
+            if(ho!=1 && ho!=2)
+            {
+                cout<<"\n\nInvalid Input Provided";
+                cout<<"\n\t\t\tThank You !!!";
+                getch();
+                exit(0);
+            }
+        }//Closing of first invalid login (forger password & recover password)
+
+        //Begin of Faculty
+        char con='y';
+        do{
+            clrscr();
+            cout<<"\n\n\t\t\tWelcome to the Faculty Panel ";
+            cout<<"\n\n\t\t\t\t\t\tYour UserID is : "<<::un;
+            cout<<"\n\nPress 1 to View Your Profile";
+            cout<<"\nPress 2 to Know Your Subjects";
+            cout<<"\nPress 3 to Add a Subject";
+            cout<<"\nPress 4 to Delete a Subject";
+            cout<<"\nPress 5 to Modify Your Profile";
+            int choice;
+            cout<<"\n\nEnter Your Choice : ";
+            cin>>choice;
+
+            if(choice==1)
+            {
+
+            }
+            if(choice==2)
+            {
+
+            }
+            if(choice==3)
+            {
+
+            }
+            if(choice==4)
+            {
+
+            }
+            if(choice==5)
+            {
+
+            }
+            if(choice<1||choice>5)
+            {
+                
+            }
+
+        }
+    }
 }
