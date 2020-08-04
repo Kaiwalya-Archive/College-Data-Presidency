@@ -1122,7 +1122,146 @@ void main()
 
         }//Closing of first invalid login(forget password & recover password)
         //getch();
-    }
 
-    //Begin of Student Panel
+        //Begin of Student Panel
+        char moreop='y';
+
+        do
+        {
+            clrscr();
+            cout<<"\n\n\t\t\tWelcome to the Student Portal ";
+            cout<<"\n\n\t\t\t\t\t\t Your UserId is : "<<::un;
+            cout<<"\n\nPress 1 to View Your Profile";
+            cout<<"\n\nPress 2 to Know Your Subjects";
+            cout<<"\n\nPress 3 to Add a Subjects";
+            cout<<"\n\nPress 4 to Delete a Subject";
+            cout<<"\n\nPress 5 to Modify Your Profile";
+
+            in inchoice;
+            cout<<"\n\nEnter Your Choice : ";
+            cin>>inchoice;
+
+            if(inchoice==1)
+            {
+                fstream fs;
+                fs.open("stinfo.txt",ios::in);
+                fs.seekg(0);
+                int x;
+                while(!fa.eof())
+                {
+                    x=0;
+                    fs.read((char *)&f, sizeof(Admin));
+                    x = f.stprofile();
+                    if(x==1)
+                    {
+                        break;
+                    }
+                }
+                fs.close();
+            }//closing inchoice 1
+
+            if(inchoice==2)
+            {
+                fstream fs;
+                fs.open("stinfo.txt",ios::in);
+                fs.seekg(0);
+                int y;
+                while(!fs.eof())
+                {
+                    y=0;
+                    fs.read((char *)&f, sizeof(Admin));
+                    int y = f.knowstsub();
+                    if(y==1)
+                    {
+                        break;
+                    }
+                }
+                fs.close();
+            }//closing the choice 2
+
+            if(inchoice==3)
+            {
+                fstream fs;
+                fstream fs1;
+                fs.open("stinfo.txt",ios::in|ios::binary);
+                fs.open("tmpstinfo.txt",ios::out|ios::ate);
+                fs.seekg(0);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&f, sizeof(Admin));
+                    f.addstsub();
+                    fs1.write((char *)&f, sizeof(Admin));
+                }
+                fs.close();
+                fs1.close();
+                remove("stinfo.txt");
+                rename("tmpstinfo.txt","stinfo.txt");
+            }
+
+            if(inchoice==4)
+            {
+                fstream fs;
+                fs.open("stinfo.txt",ios::in|ios::binary);
+                fstream fs1;
+                fs1.open("delstinfo.txt",ios::out|ios::ate);
+                fs.seekg(0);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&f, sizeof(Admin));
+                    f.delstsub();
+                    fs1.write((char *)&f, sizeof(Admin));
+                }
+                fs.close();
+                fs1.close();
+                remove("stinfo.txt");
+                rename("delstinfo.txt","stinfo.txt");
+            }
+
+            if(inchoice==5)
+            {
+                fstream fs;
+                fstream fs1;
+                fs.open("stinfo.txt",ios::in|ios::binary);
+                fs.seekg(0);
+                fs1.open("modstinfo.txt",ios::out|ios::ate);
+                while(!fs.eof())
+                {
+                    fs.read((char *)&f, sizeof(Admin));
+                    f.modstprofile();
+                    fs1.write((char *)&f, sizeof(Admin));
+                }
+                fs.close();
+                fs1.close();
+                remove("stinfo.txt");
+                rename("modstinfo.txt","stinfo.txt");
+            }
+
+            if(inchoice<1||inchoice>5)
+            {
+                cout<<"Invaid Input Provided...";
+                                
+            }
+            cout<<"\n\n\t\t\tEnter to Continue";
+                getch();
+                cout<<"\n\nPress y , otherwise n to Perform More Operation : ";
+                cin>>moreop;
+                if(moreop!'Y' && moreop!='y')
+                {
+                    clrscr();
+                    cout<<"\n\n\n\t\t\tThank You !!!";
+                    getch();
+                    exit(0);
+                } 
+        }while(moreop=='Y'||moreop=='y');
+        getch();
+    
+    }//closing the student panel ch=3
+
+    if(ch<1||ch>3)
+    {
+        cout<<"\nInvalid Input Provided !!!";
+        getch();
+        clrscr();
+        cout<<"\n\n\n\t\t\tThank You";
+    }
 }
