@@ -19,8 +19,9 @@ Developers :
 #include<stdlib.h>
 #include<string.h>
 #include<stdio.h>
-#include<fstream.h>
+//#include<fstream.h>
 #include<conio.h>
+using namespace std;
 
 char un[20];//Global declaration
 
@@ -87,7 +88,7 @@ class Admin
                     cout<<"#";
                 }
 
-                intputpasswd[i] = NULL;
+                inputpasswd[i] = NULL;
                 //cout<<"\n The Entered Password is "<<inputpasswd;
 
                 if((strcmp(::un,roll)==0) && (strcmp(passwd, inputpasswd)==0))
@@ -202,7 +203,7 @@ class Admin
                     getch();
                     exit(0);
                 }
-                cout<<"\nEnter the Subject No. to be Deleted : "
+                cout<<"\nEnter the Subject No. to be Deleted : ";
                 cin>>de;
 
                 if(de==totsub)
